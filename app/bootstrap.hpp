@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-class QApplication;
+class QCoreApplication;
 
 namespace twirl {
 
@@ -13,7 +13,7 @@ public:
     Bootstrap();
     virtual ~Bootstrap();
 
-    void init(QApplication & app);
+    void init(QCoreApplication & app);
 
 protected:
     virtual void main() = 0;

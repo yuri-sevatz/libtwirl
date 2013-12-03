@@ -1,6 +1,6 @@
 #include "bootstrap.hpp"
 
-#include <QApplication>
+#include <QCoreApplication>
 #include <QTimer>
 
 namespace twirl {
@@ -12,7 +12,7 @@ Bootstrap::~Bootstrap() {
 
 }
 
-void Bootstrap::init(QApplication & app) {
+void Bootstrap::init(QCoreApplication & app) {
 
     QTimer::singleShot(0, this, SLOT(run()));
     QObject::connect(this, SIGNAL(quit()), &app, SLOT(quit()));
