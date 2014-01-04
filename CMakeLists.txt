@@ -15,6 +15,8 @@ set(${PROJECT_NAME}_pub_headers
     app/bootstrap.hpp
     model/login.hpp
     model/session.hpp
+    util/delay.hpp
+    web/domloader.hpp
     web/pageloader.hpp
     web/requestloader.hpp
 )
@@ -32,6 +34,8 @@ set(${PROJECT_NAME}_pri_sources
     app/bootstrap.cpp
     model/login.cpp
     model/session.cpp
+    util/delay.cpp
+    web/domloader.cpp
     web/pageloader.cpp
     web/requestloader.cpp
 )

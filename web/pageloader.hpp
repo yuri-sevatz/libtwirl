@@ -22,6 +22,7 @@ public:
 private:
     PageLoader();
     Q_DISABLE_COPY(PageLoader);
+
     Q_SLOT void onLoad(bool success);
 
     enum State {
@@ -29,6 +30,8 @@ private:
         FAIL,
         DONE,
     } state;
+
+    void process(State during);
 
     QWebPage & page;
 };

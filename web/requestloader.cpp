@@ -16,7 +16,7 @@ RequestLoader::~RequestLoader() {
 
 QNetworkReply * RequestLoader::load(QNetworkReply * reply) {
     if (reply) {
-        while(reply->isRunning()) {
+        while(!reply->isFinished()) {
             QCoreApplication::processEvents();
         }
     }

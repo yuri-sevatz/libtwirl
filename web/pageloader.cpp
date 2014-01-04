@@ -1,6 +1,7 @@
 #include "pageloader.hpp"
 
 #include <QCoreApplication>
+
 #include <QWebFrame>
 #include <QWebPage>
 
@@ -9,17 +10,19 @@ namespace twirl {
 PageLoader::PageLoader(QWebPage & page) :
     page(page)
 {
-    QObject::connect(&page, SIGNAL(loadFinished(bool)), this, SLOT(onLoad(bool)));
+    connect(&page, SIGNAL(loadFinished(bool)), this, SLOT(onLoad(bool)));
 }
 
 PageLoader::~PageLoader() {}
 
-bool PageLoader::load() {
-    state = IDLE;
-    do {
+inline void PageLoader::process(State during) {
+    while(state == during) {
         QCoreApplication::processEvents();
-    } while(state == IDLE);
+    }
+}
 
+bool PageLoader::load() {
+    process(state = IDLE);
     return state == DONE;
 }
 
