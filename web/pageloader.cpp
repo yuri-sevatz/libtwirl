@@ -16,9 +16,9 @@ PageLoader::PageLoader(QWebPage & page) :
 PageLoader::~PageLoader() {}
 
 inline void PageLoader::process(State during) {
-    while(state == during) {
-        QCoreApplication::processEvents();
-    }
+    QEventLoop loop;
+    QObject::connect(&page, SIGNAL(loadFinished(bool)), &loop, SLOT(quit()));
+    loop.exec();
 }
 
 bool PageLoader::load() {
