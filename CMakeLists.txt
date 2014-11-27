@@ -54,11 +54,14 @@ QT5_WRAP_CPP(${PROJECT_NAME}_headers_moc ${${PROJECT_NAME}_headers})
 
 add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_headers} ${${PROJECT_NAME}_headers_moc} ${${PROJECT_NAME}_sources})
 
-#target_link_libraries(${PROJECT_NAME})
-
 qt5_use_modules(${PROJECT_NAME} Core Network WebKit WebKitWidgets)
 
 install(TARGETS ${PROJECT_NAME}
                 RUNTIME DESTINATION bin
                 LIBRARY DESTINATION lib
                 ARCHIVE DESTINATION lib/static)
+
+foreach(header ${${PROJECT_NAME}_pub_headers})
+	string(REGEX MATCH "(.*)[/\\]" dir ${header})
+	install(FILES ${header} DESTINATION include/lib${PROJECT_NAME}/${dir})
+endforeach(header ${${PROJECT_NAME}_pub_headers})
