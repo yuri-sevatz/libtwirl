@@ -4,15 +4,10 @@ cmake_minimum_required(VERSION 2.8.8)
 # ---------------
 project(twirl)
 
-set(VERSION_MAJOR "0")
-set(VERSION_MINOR "1")
-set(VERSION_PATCH "0")
-set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
-
 find_package(Qt5 COMPONENTS Core Network WebKit WebKitWidgets REQUIRED)
 
 set(${PROJECT_NAME}_pub_headers
-    app/bootstrap.hpp
+    app/boot.hpp
     model/login.hpp
     model/session.hpp
     util/delay.hpp
@@ -26,12 +21,13 @@ set(${PROJECT_NAME}_pub_sources
 )
 
 set(${PROJECT_NAME}_pri_headers
+    app/boot_p.hpp
     model/logindata.hpp
     model/sessiondata.hpp
 )
 
 set(${PROJECT_NAME}_pri_sources
-    app/bootstrap.cpp
+    app/boot.cpp
     model/login.cpp
     model/session.cpp
     util/delay.cpp
